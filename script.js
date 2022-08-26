@@ -23,9 +23,11 @@ let currentUnit = 'C';
 
 //DOM element references
 
+const body = document.querySelector('body');
 const searchButton = document.querySelector('#form-search');
 const searchInput = document.querySelector('#search');
 const regionText = document.querySelector('#location');
+const descriptionText = document.querySelector('#description');
 const temperatureNumber = document.querySelector('#temperature-number');
 const temperatureUnit = document.querySelector('#temperature-unit');
 const weatherIcon = document.querySelector('#weather');
@@ -54,6 +56,7 @@ async function getData(search) {
       weatherDescription: data.weather[0].description,
       icon: data.weather[0].icon,
       //Get 'd' or 'n' value from icon name to determine time of day
+      //TODO: delete
       timeOfDay: data.weather[0].icon[-1],
       temp: data.main,
       wind: data.wind
@@ -71,6 +74,20 @@ async function getData(search) {
 
 function updateDOM(data) {
   regionText.textContent = data.name;
+  descriptionText.textContent =
+    data.weatherDescription.charAt(0).toUpperCase() +
+    data.weatherDescription.slice(1);
+  if (descriptionText.textContent.includes('clear')) body.className = 'clear';
+  else if (descriptionText.textContent.includes('clouds'))
+    body.className = 'cloud';
+  else if (descriptionText.textContent.includes('rain'))
+    body.className = 'rain';
+  else if (descriptionText.textContent.includes('thunderstorm'))
+    body.className = 'thunder';
+  else if (descriptionText.textContent.includes('snow'))
+    body.className = 'snow';
+  else if (descriptionText.textContent.includes('mist'))
+    body.className = 'mist';
   temperatureNumber.textContent = data.temp.temp;
   temperatureUnit.textContent = `°${currentUnit}`;
   if (data.icon !== 'Unknown')
