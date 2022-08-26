@@ -7,14 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
   <script defer src="./script.js"></script>
 </head>
 
 <body>
-  <h1>WEATHER APP</h1>
-  <label for="search">Location</label>
-  <input type="text" name="search" id="search">
-  <button type="button" id="form-search">Search</button>
+  <div id="main-container">
+    <div id="temperature-info">
+      <p id="location">London</p>
+      <!--REUSE LATER<img src="" alt="weather icon" id="weather">-->
+      <div id="temperature-container">
+        <p id="weather">🔆</p>
+        <p id="temperature-number">20</p>
+        <p id="temperature-unit">°C</p>
+      </div>
+      <a href="#" id="unit-switch">F-C</a>
+      <div id="temp-extra-container">
+        <p>Feels Like: </p>
+        <p>Max Temperature: </p>
+        <p>Min Temperature: </p>
+      </div>
+    </div>
+    <div id="extra-info">
+      <p id="wind">Wind: </p>
+      <p id="humidity">Humidity: </p>
+      <p id="rain-chance">Rain Chance: </p>
+    </div>
+    <div id="search">
+      <form>
+        <input type="text" name="search" id="search" placeholder="London">
+        <button type="button" id="form-search">Search</button>
+      </form>
+    </div>
+  </div>
 </body>
 
 </html>
