@@ -15,10 +15,13 @@
   <script defer src="./script.js"></script>
 </head>
 
-<body>
+<body class="clear">
   <div id="main-container">
     <div id="temperature-info">
-      <p id="location">London</p>
+      <div id="location-info">
+        <p id="location">Unknown</p>
+        <p id="description">Unknown</p>
+      </div>
       <!--REUSE LATER<img src="" alt="weather icon" id="weather">-->
       <div id="temperature-container">
         <img id="weather"></img>
@@ -39,7 +42,7 @@
     <div id="search">
       <form>
         <input type="text" name="search" id="search" placeholder="London">
-        <button type="button" id="form-search">Search</button>
+        <button type="submit" id="form-search">Search</button>
       </form>
     </div>
     <footer>
