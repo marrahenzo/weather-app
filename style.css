@@ -4,9 +4,9 @@ body {
 }
 
 body {
-  background-image: url("./media/images/background.jpg");
+  background-image: url("./media/images/background2.jpg");
   background-size: cover;
-  color: rgb(138, 187, 228);
+  color: rgb(255, 255, 255);
 }
 
 #main-container {
