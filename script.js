@@ -3,6 +3,12 @@ let search = 'london';
 const searchButton = document.querySelector('#form-search');
 const searchInput = document.querySelector('#search');
 
+//If a search was done, gather info from url
+
+const queryString = window.location.search;
+const params = new URLSearchParams(queryString).get('search');
+if (params !== '') search = params;
+
 //Fetch data from api
 
 async function getData(search) {
