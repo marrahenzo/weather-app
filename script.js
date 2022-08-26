@@ -3,8 +3,6 @@ let weatherData = {
   weather: 'Unknown',
   weatherDescription: 'Unknown',
   icon: 'Unknown',
-  //Get 'd' or 'n' value from icon name to determine time of day
-  timeOfDay: 'n',
   temp: {
     temp: 'Unknown',
     temp_max: 'Unknown',
@@ -36,6 +34,7 @@ const maxTempText = document.querySelector('#max-temp');
 const minTempText = document.querySelector('#min-temp');
 const windText = document.querySelector('#wind');
 const humidityText = document.querySelector('#humidity');
+const loadScreen = document.querySelector('#loading-screen');
 
 //If a search was done, gather info from url
 
@@ -46,6 +45,7 @@ if (params !== '') search = params;
 //Fetch data from api
 
 async function getData(search) {
+  loadScreen.classList.toggle('inactive');
   search = searchInput.value;
   if (search === '') search = 'London';
   try {
@@ -57,9 +57,6 @@ async function getData(search) {
       weather: data.weather[0].main,
       weatherDescription: data.weather[0].description,
       icon: data.weather[0].icon,
-      //Get 'd' or 'n' value from icon name to determine time of day
-      //TODO: delete
-      timeOfDay: data.weather[0].icon[-1],
       temp: data.main,
       wind: data.wind
     };
@@ -68,7 +65,6 @@ async function getData(search) {
       weatherData.key = 'Unknown';
     }
   }
-  console.log(weatherData);
   updateDOM(weatherData);
 }
 
@@ -101,6 +97,7 @@ function updateDOM(data) {
   humidityText.textContent = `Humidity: ${data.temp.humidity}%`;
   searchInput.placeholder = data.name;
   searchInput.value = '';
+  loadScreen.classList.toggle('inactive');
 }
 
 getData(search);
