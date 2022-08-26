@@ -13,7 +13,7 @@ if (params !== '') search = params;
 
 async function getData(search) {
   try {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=898ea4c6cd7081847d0967e6594eef75`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=898ea4c6cd7081847d0967e6594eef75&units=metric `;
     const response = await fetch(url, { mode: 'cors' });
     const data = await response.json();
     weatherData = {
