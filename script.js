@@ -1,4 +1,23 @@
-let weatherData;
+let weatherData = {
+  name: 'Unknown',
+  weather: 'Unknown',
+  weatherDescription: 'Unknown',
+  icon: 'Unknown',
+  //Get 'd' or 'n' value from icon name to determine time of day
+  timeOfDay: 'n',
+  temp: {
+    temp: 'Unknown',
+    temp_max: 'Unknown',
+    temp_min: 'Unknown',
+    feels_like: 'Unknown',
+    humidity: 'Unknown'
+  },
+  wind: {
+    speed: 'Unknown'
+  },
+  sunrise: 'Unknown',
+  sunset: 'Unknown'
+};
 let search = 'london';
 let currentUnit = 'C';
 
@@ -9,6 +28,7 @@ const searchInput = document.querySelector('#search');
 const regionText = document.querySelector('#location');
 const temperatureNumber = document.querySelector('#temperature-number');
 const temperatureUnit = document.querySelector('#temperature-unit');
+const weatherIcon = document.querySelector('#weather');
 const feelsLikeText = document.querySelector('#feels-like');
 const maxTempText = document.querySelector('#max-temp');
 const minTempText = document.querySelector('#min-temp');
@@ -32,14 +52,15 @@ async function getData(search) {
       name: data.name,
       weather: data.weather[0].main,
       weatherDescription: data.weather[0].description,
+      icon: data.weather[0].icon,
+      //Get 'd' or 'n' value from icon name to determine time of day
+      timeOfDay: data.weather[0].icon[-1],
       temp: data.main,
-      wind: data.wind,
-      sunrise: data.sys.sunrise,
-      sunset: data.sys.sunset
+      wind: data.wind
     };
   } catch {
     for (const key in weatherData) {
-      weatherData[key] = 'Unknown';
+      weatherData.key = 'Unknown';
     }
   }
   console.log(weatherData);
@@ -52,6 +73,8 @@ function updateDOM(data) {
   regionText.textContent = data.name;
   temperatureNumber.textContent = data.temp.temp;
   temperatureUnit.textContent = `°${currentUnit}`;
+  if (data.icon !== 'Unknown')
+    weatherIcon.src = `http://openweathermap.org/img/wn/${data.icon}@4x.png`;
   feelsLikeText.textContent = `Feels like: ${data.temp.feels_like}°${currentUnit}`;
   maxTempText.textContent = `Max: ${data.temp.temp_max}`;
   minTempText.textContent = `Min: ${data.temp.temp_min}`;
