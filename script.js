@@ -18,7 +18,7 @@ let weatherData = {
   sunrise: 'Unknown',
   sunset: 'Unknown'
 };
-let search = 'london';
+let search;
 let currentUnit = 'C';
 
 //DOM element references
@@ -47,6 +47,7 @@ if (params !== '') search = params;
 
 async function getData(search) {
   search = searchInput.value;
+  if (search === '') search = 'London';
   try {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=898ea4c6cd7081847d0967e6594eef75&units=metric`;
     const response = await fetch(url, { mode: 'cors' });
@@ -98,6 +99,8 @@ function updateDOM(data) {
   minTempText.textContent = `Min: ${data.temp.temp_min}`;
   windText.textContent = `Wind: ${data.wind.speed} km/h`;
   humidityText.textContent = `Humidity: ${data.temp.humidity}%`;
+  searchInput.placeholder = data.name;
+  searchInput.value = '';
 }
 
 getData(search);
