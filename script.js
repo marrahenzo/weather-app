@@ -24,8 +24,8 @@ let currentUnit = 'C';
 //DOM element references
 
 const body = document.querySelector('body');
-const searchButton = document.querySelector('#form-search');
-const searchInput = document.querySelector('#search');
+const form = document.querySelector('form');
+const searchInput = document.querySelector('#search-input');
 const regionText = document.querySelector('#location');
 const descriptionText = document.querySelector('#description');
 const temperatureNumber = document.querySelector('#temperature-number');
@@ -46,8 +46,9 @@ if (params !== '') search = params;
 //Fetch data from api
 
 async function getData(search) {
+  search = searchInput.value;
   try {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=898ea4c6cd7081847d0967e6594eef75&units=metric `;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=898ea4c6cd7081847d0967e6594eef75&units=metric`;
     const response = await fetch(url, { mode: 'cors' });
     const data = await response.json();
     weatherData = {
@@ -77,7 +78,7 @@ function updateDOM(data) {
   descriptionText.textContent =
     data.weatherDescription.charAt(0).toUpperCase() +
     data.weatherDescription.slice(1);
-  if (descriptionText.textContent.includes('clear')) body.className = 'clear';
+  if (descriptionText.textContent.includes('Clear')) body.className = 'clear';
   else if (descriptionText.textContent.includes('clouds'))
     body.className = 'cloud';
   else if (descriptionText.textContent.includes('rain'))
@@ -101,7 +102,7 @@ function updateDOM(data) {
 
 getData(search);
 
-searchButton.addEventListener('click', () => {
-  search = searchInput.value;
-  getData(search);
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  getData();
 });
