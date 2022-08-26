@@ -6,9 +6,32 @@ body {
 }
 
 body {
-  background-image: url('./media/images/background2.jpg');
   background-size: cover;
   color: $text-color;
+}
+
+.clear {
+  background-image: url('./media/images/clear.jpg');
+}
+
+.cloud {
+  background-image: url('./media/images/cloud.jpg');
+}
+
+.mist {
+  background-image: url('./media/images/mist.jpg');
+}
+
+.rain {
+  background-image: url('./media/images/rain.jpg');
+}
+
+.snow {
+  background-image: url('./media/images/snow.jpg');
+}
+
+.thunder {
+  background-image: url('./media/images/thunder.jpg');
 }
 
 #main-container {
@@ -26,12 +49,22 @@ body {
   grid-template-columns: 1fr 1fr;
 }
 
-#location {
-  grid-row: 1;
-  grid-column: 1;
-  justify-self: center;
-  margin-bottom: 0px;
-  font-size: 35px;
+#location-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  #location {
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: center;
+    margin-bottom: -20px;
+    font-size: 35px;
+  }
+
+  #description {
+    font-size: 20px;
+  }
 }
 
 #temperature-container {
@@ -44,7 +77,6 @@ body {
   #weather,
   #temperature-number {
     font-size: 80px;
-    margin-left: 10px;
   }
 
   #temperature-unit {
