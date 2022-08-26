@@ -117,3 +117,44 @@ body {
   grid-row: 2;
   text-align: center;
 }
+
+footer a {
+  text-decoration: none;
+  color: greenyellow;
+}
+
+#loading-screen {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 1;
+  transition: all 300ms ease-in-out;
+  background-color: rgb(226, 113, 37);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &.inactive {
+    opacity: 0;
+  }
+
+  @keyframes rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  p {
+    margin-left: 30px;
+    margin-bottom: 0;
+    font-size: 50px;
+  }
+
+  img {
+    width: 100px;
+    animation: rotate 1.5s linear infinite;
+  }
+}
