@@ -2,7 +2,7 @@ $text-color: rgb(255, 255, 255);
 
 html,
 body {
-  height: 99vh;
+  min-height: 100%;
 }
 
 body {
@@ -35,9 +35,9 @@ body {
 }
 
 #main-container {
-  height: 100vh;
+  min-height: 98vh;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 200px;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   margin: 0px 20px;
@@ -53,13 +53,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Poppins', sans-serif;
 
   #location {
     grid-row: 1;
     grid-column: 1;
     justify-self: center;
     margin-bottom: -20px;
-    font-size: 35px;
+    font-size: 50px;
   }
 
   #description {
@@ -73,6 +74,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Raleway', sans-serif;
 
   #weather,
   #temperature-number {
@@ -89,8 +91,11 @@ body {
 #unit-switch {
   grid-row: 3;
   grid-column: 1/3;
+  font-size: 18px;
+  font-family: 'Ubuntu', sans-serif;
 
   a {
+    padding-top: 4px;
     text-align: center;
     margin-top: 50px;
     left: 130px;
@@ -113,6 +118,8 @@ body {
   flex-direction: column;
   justify-content: center;
   margin-left: 20px;
+  font-size: 25px;
+  font-family: 'Roboto';
 
   p {
     margin: 0;
@@ -126,17 +133,75 @@ body {
   align-items: flex-end;
   justify-content: center;
   margin-right: 150px;
+  font-size: 30px;
+  font-family: 'Poppins', sans-serif;
+
+  #wind-info,
+  #humidity-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      margin-right: 20px;
+    }
+  }
 }
 
 #search {
   grid-column: 1/3;
   grid-row: 2;
   text-align: center;
+
+  input,
+  button {
+    font-size: 30px;
+  }
+
+  input {
+    background: none;
+    border: 0;
+    border-bottom: 2px solid white;
+    color: white;
+  }
+
+  button {
+    background: none;
+    border: 2px solid white;
+    border-radius: 15px;
+    color: white;
+  }
 }
 
-footer a {
-  text-decoration: none;
-  color: greenyellow;
+footer {
+  grid-column: 1/3;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    color: greenyellow;
+  }
+
+  p,
+  a {
+    font-family: 'Rubik';
+    font-size: 20px;
+  }
+}
+
+#copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    margin-left: 10px;
+    transition: transform 300ms ease;
+
+    &:hover {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 #loading-screen {
