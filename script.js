@@ -35,6 +35,7 @@ const minTempText = document.querySelector('#min-temp');
 const windText = document.querySelector('#wind');
 const humidityText = document.querySelector('#humidity');
 const loadScreen = document.querySelector('#loading-screen');
+const tempSwitch = document.querySelector('#temp-switch');
 
 //If a search was done, gather info from url
 
@@ -45,7 +46,9 @@ if (params !== '') search = params;
 //Fetch data from api
 
 async function getData(search) {
-  loadScreen.classList.toggle('inactive');
+  tempSwitch.textContent = 'Switch to Fahrenheit';
+  currentUnit = 'C';
+  loadScreen.classList.remove('inactive');
   search = searchInput.value;
   if (search === '') search = 'London';
   try {
@@ -91,13 +94,21 @@ function updateDOM(data) {
   if (data.icon !== 'Unknown')
     weatherIcon.src = `http://openweathermap.org/img/wn/${data.icon}@4x.png`;
   feelsLikeText.textContent = `Feels like: ${data.temp.feels_like}°${currentUnit}`;
-  maxTempText.textContent = `Max: ${data.temp.temp_max}`;
-  minTempText.textContent = `Min: ${data.temp.temp_min}`;
+  maxTempText.textContent = `Max: ${data.temp.temp_max}°${currentUnit}`;
+  minTempText.textContent = `Min: ${data.temp.temp_min}°${currentUnit}`;
   windText.textContent = `Wind: ${data.wind.speed} km/h`;
   humidityText.textContent = `Humidity: ${data.temp.humidity}%`;
   searchInput.placeholder = data.name;
   searchInput.value = '';
-  loadScreen.classList.toggle('inactive');
+  loadScreen.classList.add('inactive');
+}
+
+function celsiusToFahrenheit(deg) {
+  return ((deg * 9) / 5 + 32).toFixed(2);
+}
+
+function fahrenheitToCelsius(deg) {
+  return (((deg - 32) * 5) / 9).toFixed(2);
 }
 
 getData(search);
@@ -105,4 +116,27 @@ getData(search);
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   getData();
+});
+
+tempSwitch.addEventListener('click', function () {
+  if (currentUnit === 'C') {
+    currentUnit = 'F';
+    weatherData.temp.temp = celsiusToFahrenheit(weatherData.temp.temp);
+    weatherData.temp.feels_like = celsiusToFahrenheit(
+      weatherData.temp.feels_like
+    );
+    weatherData.temp.temp_max = celsiusToFahrenheit(weatherData.temp.temp_max);
+    weatherData.temp.temp_min = celsiusToFahrenheit(weatherData.temp.temp_min);
+    this.textContent = 'Switch to Celsius';
+  } else {
+    currentUnit = 'C';
+    weatherData.temp.temp = fahrenheitToCelsius(weatherData.temp.temp);
+    weatherData.temp.feels_like = fahrenheitToCelsius(
+      weatherData.temp.feels_like
+    );
+    weatherData.temp.temp_max = fahrenheitToCelsius(weatherData.temp.temp_max);
+    weatherData.temp.temp_min = fahrenheitToCelsius(weatherData.temp.temp_min);
+    this.textContent = 'Switch to Fahrenheit';
+  }
+  updateDOM(weatherData);
 });
