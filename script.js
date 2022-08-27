@@ -78,20 +78,14 @@ function updateDOM(data) {
   descriptionText.textContent =
     data.weatherDescription.charAt(0).toUpperCase() +
     data.weatherDescription.slice(1);
-  if (descriptionText.textContent.includes('Clear')) body.className = 'clear';
+  if (descriptionText.textContent.includes('lear')) body.className = 'clear';
   else if (descriptionText.textContent.includes('clouds'))
     body.className = 'cloud';
-  else if (
-    descriptionText.textContent.includes('Rain') ||
-    descriptionText.textContent.includes('rain')
-  )
-    body.className = 'rain';
-  else if (descriptionText.textContent.includes('Thunderstorm'))
+  else if (descriptionText.textContent.includes('ain')) body.className = 'rain';
+  else if (descriptionText.textContent.includes('hunderstorm'))
     body.className = 'thunder';
-  else if (descriptionText.textContent.includes('Snow'))
-    body.className = 'snow';
-  else if (descriptionText.textContent.includes('Mist'))
-    body.className = 'mist';
+  else if (descriptionText.textContent.includes('now')) body.className = 'snow';
+  else if (descriptionText.textContent.includes('ist')) body.className = 'mist';
   temperatureNumber.textContent = data.temp.temp;
   temperatureUnit.textContent = `°${currentUnit}`;
   if (data.icon !== 'Unknown')
