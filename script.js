@@ -52,7 +52,7 @@ async function getData(search) {
   search = searchInput.value;
   if (search === '') search = 'London';
   try {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=898ea4c6cd7081847d0967e6594eef75&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=b388757bef185acc20bb7f6fac3a5f09&units=metric`;
     const response = await fetch(url, { mode: 'cors' });
     const data = await response.json();
     weatherData = {
